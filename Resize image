@@ -1,0 +1,7 @@
+import cv2
+import imutils
+img=cv2.imread("sample1.jpg")
+resizeimg=imutils.resize(img,width=200)
+cv2.imwrite("resizeimg.jpg",resizeimg)
+cv2.imshow("myimage",resizeimg)
+cv2.waitKey(0)

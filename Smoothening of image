@@ -1,0 +1,7 @@
+import cv2
+import imutils
+img=cv2.imread("sample1.jpg")
+gaussianBlurimg=cv2.GaussianBlur(img,(21,21),0)
+cv2.imwrite("resizeimg.jpg",gaussianBlurimg)
+cv2.imshow("myimage",gaussianBlurimg)
+cv2.waitKey(0)

@@ -1,0 +1,8 @@
+import cv2
+img=cv2.imread("sample1.jpg")
+grayimg=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+thresImg=cv2.threshold(grayimg,180,255,cv2.THRESH_BINARY)[1]
+
+cv2.imwrite("resizeimg.jpg",thresImg)
+cv2.imshow("myimage",thresImg)
+cv2.waitKey(0)

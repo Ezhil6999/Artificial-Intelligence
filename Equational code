@@ -1,0 +1,142 @@
+
+import numpy as np
+
+a=int(input("Enter the first equation length : "))
+b=int(input("Enter the second equation Length : "))
+c=[]
+d=[]
+for i in range(a):
+    c.append(int(input("Enter the first equation %s value : " % (i))))
+for i in range(b):
+    d.append(int(input("Enter the second equation %s value : " % (i))))
+print(c)
+print(d)
+num1=c
+num2=d
+num3=np.poly1d(num1)
+num4=np.poly1d(num2)
+
+print(num3)
+print(num4)
+q,r=np.polydiv(num3,num4)
+print(r)
+leading_coefficient = r.coeffs[-1]
+if leading_coefficient < 0:
+    r=-r
+#print(r)
+equation = np.poly1d(r)
+#print(equation)
+common_factor = r[0]
+equation /= common_factor
+q,r=np.polydiv(num3,equation)
+print(r)
+leading_coefficient = r.coeffs[-1]
+if leading_coefficient==0:
+    print("We get zero as remainder ")
+    
+    
+ 
+import numpy as np
+num1=[1,1,-1,2]
+num2=[2,-5,5,-3]
+num3=np.poly1d(num1)
+num4=np.poly1d(num2)
+q,r=np.polydiv(num4,num3)
+print(q,"\n",r)
+leading_coefficient = r.coeffs[-1]
+if leading_coefficient < 0:
+    r=-r
+#print(r)
+equation = np.poly1d(r)
+#print(equation)
+common_factor = r[0]
+equation /= common_factor
+q,r=np.polydiv(num3,equation)
+print(q,r)
+leading_coefficient = r.coeffs[-1]
+if leading_coefficient==0:
+    print("We get zero as remainder ")
+ 
+
+
+
+import numpy as np;
+
+e1=np.array([1,1,-1,2])
+e2=np.array([2,-5,5,-3])
+e3=np.array([0,0,0,0])
+e4=np.array([0,0,0,0])
+remainder=np.array([])
+if(len(e1)==len(e2)):
+    l=0
+    m=0
+    for i in range(100):
+        k=i*e1[m]
+        if int(k)==int(e2[0]):
+            for j in range(len(e1)):
+                e3[j]=e1[j]*i
+            break
+    dividval=e2-e3
+    print("quotient of first Equation : ",k)
+    print()
+    print("Remainder of first equation : ",dividval)
+    dividval= dividval[dividval != 0]
+    if dividval[0]<0:
+        dividval=dividval * -1
+    #common_factors = np.gcd.reduce(dividval)
+    common_factors=dividval[0]
+    dividval=dividval//common_factors
+if(len(e1)>len(dividval)):
+    k=0
+    for i in range(len(e1)):
+        if(e1[i]==1 and dividval[k]==1):
+            l= len(e1)-len(dividval)
+            if(l==1):
+                remainder=np.append(remainder,1)
+
+                for j in range(l):
+                    dividval=np.append(dividval,0)
+                e4=e1-dividval
+            if(e4[0]==0):
+                common_factors = np.gcd.reduce(e4)
+                remainder=np.append(remainder,2 )
+                m=np.poly1d(remainder)
+                print(m," quotient of derived equation ")
+                e4=e4//common_factors
+                e4=e4[e4!=0]
+                dividval=dividval[dividval!=0]
+            if np.array_equal(e4,dividval):
+                print()
+                print("We get zero as remainder ")
+            break
+
+
+
+
+
+
+
+
+
+# from sympy import *
+#
+# x=symbols('x')
+# f=Eq(2*x**3 - 5*x**2 + 5*x - 3)
+# g=Eq(x**3 + x**2 - x + 2)
+# gfg = gcd(f.lhs, g.lhs)
+#
+# print(gfg)
+from sympy import *
+
+x = symbols('x')
+f = Eq(2*x**3 - 5*x**2 + 5*x - 3,0)
+g = Eq(x**3 + x**2 - x + 2,0)
+gfg = gcd(f.lhs, g.lhs)
+q1,r1 = div(f.lhs, g.lhs)
+q2,r2 = div(g.lhs,gfg)
+
+print("Remainder of first Equation : ",r1)
+print("Quotient of first equation : ",q1)
+print("Quotient of the derived equation : ",q2)
+print("Remainder of the derived equation : ",r2)
+

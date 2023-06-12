@@ -1,0 +1,39 @@
+import cv2
+
+# Syntax: cv2.imread('<img name>', flag
+# cv2.IMREAD_COLOR --> 1 --> load a color image
+# cv2.IMREAD_GRAYSCALE --> 0 --> loads image in grayscale mode
+# cv2.IMREAD_UNCHANGED --> -1 --> Load images as such including alpha channel
+img = cv2.imread('lena.jpg', 0)
+img2 = cv2.imread('unnamed_image_give_any_name.jpg', 0)
+print(img)
+print("unknown img :", img2)
+
+cv2.imshow('lena',img) # it will display only for millisecond
+# waitkey is a keboad binding function
+# cv2.waitKey(5000) # desplayed for five seconds
+# cv2.waitKey(0)  # display untill close the window
+# cv2.destroyAllWindows()  # distrop all the window
+#cv2.destroyWindows()     # destroy the particular windows
+
+k=cv2.waitKey(0) & 0xFF
+if k==27:
+    cv2.destroyAllWindows()
+elif k==ord('s'):
+    cv2.imwrite('lena_copy.png',img)
+    cv2.destroyAllWindows()
+
+-------------------------------------------------------------------------------------------------
+
+
+import cv2
+cap=cv2.VideoCapture(2);
+# syntax : variale=cv2.VideoCapture(<either vedio location or index of the camera)
+while(cap.isOpened()):
+    ret,frame=cap.read()
+    gray=cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    cv2.imshow('frame',gray)
+    if cv2.waitKey(1) & 0xFF == ord('0'):
+        break
+cap.release()
+cv2.destroyAllWindows()

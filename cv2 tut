@@ -63,3 +63,108 @@ while(cap.isOpened()):
             break
 cap.release()
 cv2.destroyAllWindows()
+
+--------------------------------------------------------------------------------------------------
+
+import cv2
+
+img=cv2.imread('lena.jpg',1)
+
+img1=cv2.line(img,(0,0),(0,500),(255,0,0),10)
+cv2.imshow("frame",img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+------------------------------------------------------------------------------------------------
+import cv2
+
+img=cv2.imread('lena.jpg',1)
+
+img1=cv2.arrowedLine(img,(0,0),(250,500),(255,0,0),10)
+cv2.imshow("frame",img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+--------------------------------------------------------------------------------------------
+import cv2
+
+img=cv2.imread('lena.jpg',1)
+
+img1=cv2.rectangle(img,(0,0),(250,500),(255,0,0),10)
+cv2.imshow("frame",img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+--------------------------------------------------------------------------------------------
+import cv2
+
+img=cv2.imread('lena.jpg',1)
+
+img1=cv2.rectangle(img,(0,0),(250,500),(255,0,0),-1)
+cv2.imshow("frame",img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+----------------------------------------------------------------------------------------------
+
+import cv2
+
+img=cv2.imread('lena.jpg',1)
+
+img1=cv2.circle(img,(255,255),250,(0,255,0),5)
+cv2.imshow("frame",img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+-----------------------------------------------------------------------------------------------
+import cv2
+
+img=cv2.imread('lena.jpg',1)
+font=cv2.FONT_HERSHEY_SIMPLEX
+
+img1=cv2.putText(img,'openCV by Ezhil',(255,250),font,1,(255,255,0),5,cv2.LINE_AA)
+cv2.imshow("frame",img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+---------------------------------------------------------------------------------------------
+
+import cv2
+import numpy as np
+img2=np.ones([512,512,3],np.uint8)
+
+img=cv2.imread('lena.jpg',1)
+font=cv2.FONT_HERSHEY_SIMPLEX
+
+img1=cv2.putText(img2,'openCV by Ezhil',(255,250),font,1,(255,255,0),5,cv2.LINE_AA)
+cv2.imshow("frame",img1)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+-----------------------------------------------------------------------------------------------
+import cv2
+
+cap=cv2.VideoCapture(0)
+print(cap.get(1)) # i do no
+print(cap.get(2)) # i do no
+
+print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+print(cap.get(3))
+print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+print(cap.get(4))
+cap.set(3,1208)
+cap.set(4,720)
+print("after",cap.get(3))
+print("after",cap.get(4))
+# check the documentation for further knowledge of set method
+while(cap.isOpened()):
+    ret,frame=cap.read()
+    if ret==True:
+        cv2.imshow('frame',frame)
+        if cv2.waitKey(1) & 0xFF==ord('q'):
+            break
+    else:
+        break
+cap.release()
+cv2.destroyAllWindows()
+---------------------------------------------------------------------------------------------
+
+

@@ -167,4 +167,84 @@ cap.release()
 cv2.destroyAllWindows()
 ---------------------------------------------------------------------------------------------
 
+import cv2
+import datetime
+cap=cv2.VideoCapture(0)
+print(cap.get(1)) # i do no
+print(cap.get(2)) # i do no
+
+print(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+print(cap.get(3))
+print(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+print(cap.get(4))
+cap.set(3,1208)
+cap.set(4,720)
+print("after",cap.get(3))
+print("after",cap.get(4))
+# check the documentation for further knowledge of set method
+while(cap.isOpened()):
+    ret,frame=cap.read()
+    if ret==True:
+        font=cv2.FONT_HERSHEY_SIMPLEX
+        text='Width: '+str(cap.get(3))+ 'Height : '+ str(cap.get(3))
+        dt=str(datetime.datetime.now())
+        frame=cv2.putText(frame,dt,(10,50),font,1,(255,0,255),2,cv2.LINE_AA)
+        cv2.imshow('frame',frame)
+        if cv2.waitKey(1) & 0xFF==ord('q'):
+            break
+    else:
+        break
+cap.release()
+cv2.destroyAllWindows()
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+import cv2
+
+# event=[i for i in dir(cv2) if 'EVENT' in i]
+# print(event)
+
+def click_event(event,x,y,flag,param):
+    if event==cv2.EVENT_LBUTTONDOWN:
+        Fstr=str(x)+','+str(y)
+        font=cv2.FONT_HERSHEY_SIMPLEX
+        cv2.putText(img,Fstr,(x,y),font,0.5,(255,0,0),2)
+        cv2.imshow('image',img)
+    if event==cv2.EVENT_RBUTTONDOWN:
+        blue=img[y,x,0]
+        green=img[y,x,1]
+        red=img[y,x,2]
+        font=cv2.FONT_HERSHEY_SIMPLEX
+        BGRcol=str(blue)+','+str(green)+','+str(red)
+        cv2.putText(img,BGRcol,(x,y),font,0.5,(0,225,225),2)
+        cv2.imshow('image',img)
+
+img=cv2.imread('lena.jpg',1)
+cv2.imshow('image', img)
+cv2.setMouseCallback('image',click_event)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import cv2
+
+# event=[i for i in dir(cv2) if 'EVENT' in i]
+# print(event)
+
+def click_event(event,x,y,flag,param):
+    if event==cv2.EVENT_LBUTTONDOWN:
+        cv2.circle(img,(x,y),3,(0,0,255),-1)
+        points.append((x,y))
+        if len(points) >=2:
+            cv2.line(img,points[-1],points[-2],(255,0,0),5)
+        cv2.imshow('image',img)
+
+
+img=cv2.imread('lena.jpg',1)
+cv2.imshow('image', img)
+points=[]
+cv2.setMouseCallback('image',click_event)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
 

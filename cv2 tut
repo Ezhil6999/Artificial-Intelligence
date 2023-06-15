@@ -266,4 +266,70 @@ cv2.imshow('image',img)
 cv2.setMouseCallback('image',click_event)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+---------------------------------------------------------------------------------------------------
+import cv2
+img=cv2.imread('mershe.jpg',1)
+img2=cv2.imread('wolf_logo.png',1)
+resized_image = cv2.resize(img, (800, 600))
+print(resized_image.shape)# Adjust the dimensions as needed
+# cv2.imshow('image', resized_image)
+point=[]
+print(resized_image.size)
+print(resized_image.dtype)
+# cv2.setMouseCallback('image',click_event)
+# ball=resized_image[560:614, 660:780]
+# resized_image[546:666,200:320]=ball
+ball=resized_image[501:601,590:690]
+ball = cv2.resize(ball, (100,100))
+resized_image[170:270,258:358] = ball
+cv2.imshow('image', resized_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+---------------------------------------------------------------------------------------------------
+
+import cv2
+
+# Load the image
+img = cv2.imread('mershe.jpg')
+image = cv2.resize(img, (800, 600))
+
+# Display the image
+
+# Select ROI
+roi = cv2.selectROI('Image', image, fromCenter=False, showCrosshair=True)
+
+# Retrieve the coordinates of the ROI
+x, y, w, h = roi
+top_left = (x, y)
+bottom_right = (x + w, y + h)
+
+# Print the coordinates
+print("Top-left coordinates: ", top_left)
+print("Bottom-right coordinates: ", bottom_right)
+
+# Close the image window
+cv2.destroyAllWindows()
+---------------------------------------------------------------------------------------------------------
+import cv2
+img=cv2.imread('mershe.jpg',1)
+img2=cv2.imread('wolf_logo.png',1)
+img = cv2.resize(img, (800, 600))
+img2 = cv2.resize(img2, (800, 600))
+Mimg=cv2.addWeighted(img,1,img2,.5,1)
+cv2.imshow('image2',Mimg)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+------------------------------------------------------------------------------------------------
+import cv2
+img=cv2.imread('mershe.jpg',1)
+img2=cv2.imread('wolf_logo.png',1)
+img = cv2.resize(img, (800, 600))
+img2 = cv2.resize(img2, (800, 600))
+b,g,r=cv2.split(img)
+img=cv2.merge((b,g,r))
+Mimg=cv2.addWeighted(img,.5,img2,.5,0)
+cv2.imshow('image2',Mimg)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+-------------------------------------------------------------------------------------------------
 

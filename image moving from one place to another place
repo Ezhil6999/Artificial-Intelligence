@@ -1,0 +1,31 @@
+import cv2
+img=cv2.imread('mershe.jpg',1)
+resized_image = cv2.resize(img, (800, 600))
+print(resized_image.shape)# Adjust the dimensions as needed
+# cv2.imshow('image', resized_image)
+point=[]
+print(resized_image.size)
+print(resized_image.dtype)
+# cv2.setMouseCallback('image',click_event)
+# ball=resized_image[560:614, 660:780]
+# resized_image[546:666,200:320]=ball
+ball=resized_image[501:601,590:690]
+ball = cv2.resize(ball, (50,50))
+resized_image[220:270,300:350] = ball
+cv2.imshow('image', resized_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+
+import cv2
+
+
+img = cv2.imread('mershe.jpg')
+image = cv2.resize(img, (800, 600))
+roi = cv2.selectROI('Image', image, fromCenter=False, showCrosshair=True)
+x, y, w, h = roi
+top_left = (x, y)
+bottom_right = (x + w, y + h)
+print("Top-left coordinates: ", top_left)
+print("Bottom-right coordinates: ", bottom_right)
+cv2.destroyAllWindows()

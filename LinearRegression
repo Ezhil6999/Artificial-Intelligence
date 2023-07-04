@@ -1,0 +1,42 @@
+import pandas as pd
+import numpy as np
+def cal_val(x):
+    val=0
+    count=0
+    for i in x:
+        count+=1
+        val=val+i
+    return val/count
+
+def product_devia_sum_devia(dx,dy):
+    dxy=dx*dy
+    dxx=dx*dx
+    pdval=0
+    for i in dxy:
+        pdval=pdval+i
+    sdval=0
+    for i in dxx:
+        sdval=sdval+i
+    yield pdval
+    yield sdval
+def cal(slope,y_int,x):
+    for i in x:
+        print(slope*x+y_int)
+def deviation(xy,mean):
+    d=[]
+    for i in xy:
+        d.append(i-mean)
+    d=np.array(d)
+    d=d.reshape(5,1)
+    return d
+class main:
+    x = np.array([[1], [2], [3], [4], [5]])
+    y = np.array([[3], [5], [7], [9], [11]])
+    x_mean=cal_val(x)
+    y_mean=cal_val(y)
+    dx=deviation(x,x_mean)
+    dy=deviation(y,y_mean)
+    pd,sd=product_devia_sum_devia(dx,dy)
+    slope=pd/sd
+    y_int=y_mean-(slope*x_mean)
+    cal(slope,y_int,x)
